@@ -18,7 +18,22 @@ import sqlite3
 
 # 	conn.close()
 
-# make_file("customer.db")
+def ahow_all():
+	# Make a new connections and cursor
+	conn = sqlite3.connect("customer.db")
+	cursor = conn.cursor()
+
+	cursor.execute("SELECT rowid, * FROM customers")
+
+	users = cursor.fetchall()
+
+	for user in users:
+		print(user)
+
+	conn.commit()
+
+	conn.close()
+
 
 def add_data(list):
 
@@ -38,6 +53,17 @@ def add_one(First_name,Last_name,Email,Age):
 	cursor = conn.cursor()
 
 	cursor.execute("INSERT INTO customers VALUES (?,?,?,?)", (First_name, Last_name, Email, Age))
+
+	conn.commit()
+	conn.close()
+
+
+def delete_one(id):
+
+	conn = sqlite3.connect("customer.db")
+	cursor = conn.cursor()
+
+	cursor.execute("DELETE from customers WHERE rowid = (?)", id)
 
 	conn.commit()
 	conn.close()

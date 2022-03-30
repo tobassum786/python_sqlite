@@ -15,3 +15,6 @@ import database
 
 database.add_one("wila", "bibo", "wila@bibo.com", "44")
 
+database.delete_one('3')
+
+database.ahow_all()
